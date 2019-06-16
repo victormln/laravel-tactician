@@ -2,6 +2,8 @@
 
 namespace Victormln\LaravelTactician\Tests\Locator;
 
+use League\Tactician\Exception\MissingHandlerException;
+use ReflectionException;
 use Victormln\LaravelTactician\Tests\TestCase;
 
 /**
@@ -24,7 +26,7 @@ class TestLaravelLocator extends TestCase{
      */
     public function test_it_throws_exception_when_locator_from_laravel_container_is_not_found(): void
     {
-        $this->expectException(League\Tactician\Exception\MissingHandlerException::class);
+        $this->expectException(MissingHandlerException::class);
         $locator = app('Victormln\LaravelTactician\Locator\LocatorInterface');
         $handler = $locator->getHandlerForCommand('TestCommand');
     }
