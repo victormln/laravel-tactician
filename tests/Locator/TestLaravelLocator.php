@@ -13,7 +13,7 @@ class TestLaravelLocator extends TestCase{
     /**
      * It resolves the locator
      */
-    public function test_it_resolves_the_laravel_locator()
+    public function test_it_resolves_the_laravel_locator(): void
     {
         $this->assertInstanceOf('Victormln\LaravelTactician\Locator\LocatorInterface',
             app('Victormln\LaravelTactician\Locator\LaravelLocator'));
@@ -23,7 +23,7 @@ class TestLaravelLocator extends TestCase{
      * Throws exception if no handler for a command has been added
      * @expectedException League\Tactician\Exception\MissingHandlerException
      */
-    public function test_it_throws_exception_when_locator_from_laravel_container_is_not_found()
+    public function test_it_throws_exception_when_locator_from_laravel_container_is_not_found(): void
     {
         $locator = app('Victormln\LaravelTactician\Locator\LocatorInterface');
         $handler = $locator->getHandlerForCommand('TestCommand');
@@ -33,7 +33,7 @@ class TestLaravelLocator extends TestCase{
      * Throws exception if laravel container can't resolve the handler class
      * @expectedException ReflectionException
      */
-    public function test_it_throws_exception_when_locator_is_not_resolve_from_laravel_container()
+    public function test_it_throws_exception_when_locator_is_not_resolve_from_laravel_container(): void
     {
         $locator = app('Victormln\LaravelTactician\Locator\LocatorInterface');
         $locator->addHandler('SomeCommandHandler',
@@ -43,7 +43,7 @@ class TestLaravelLocator extends TestCase{
     /**
      * It is able to resolve the locator from the container
      */
-    public function test_it_is_able_to_resolve_handler_from_laravel_container()
+    public function test_it_is_able_to_resolve_handler_from_laravel_container(): void
     {
         $locator = app('Victormln\LaravelTactician\Locator\LocatorInterface');
         $locator->addHandler('Victormln\LaravelTactician\Tests\Stubs\TestCommandHandler',
@@ -55,7 +55,7 @@ class TestLaravelLocator extends TestCase{
     /**
      * Add more than one command => handler to the bus
      */
-    public function test_it_maps_array_commands()
+    public function test_it_maps_array_commands(): void
     {
         $locator = app('Victormln\LaravelTactician\Locator\LocatorInterface');
         $locator->addHandlers([

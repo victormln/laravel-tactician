@@ -14,7 +14,7 @@ class TestProvider extends TestCase{
     /**
      * It loads the service Provider
      */
-    public function test_it_loads_service_provider()
+    public function test_it_loads_service_provider(): void
     {
         $this->assertInstanceOf('Victormln\LaravelTactician\Providers\LaravelTacticianServiceProvider',
             app()->getProvider('Victormln\LaravelTactician\Providers\LaravelTacticianServiceProvider'));
@@ -23,7 +23,7 @@ class TestProvider extends TestCase{
     /**
      * it registers a locator
      */
-    public function test_it_registers_locator()
+    public function test_it_registers_locator(): void
     {
         $this->assertInstanceOf('Victormln\LaravelTactician\Locator\LocatorInterface',
             app('Victormln\LaravelTactician\Locator\LocatorInterface'));
@@ -32,7 +32,7 @@ class TestProvider extends TestCase{
     /**
      * It registers the inflector
      */
-    public function test_it_registers_inflector()
+    public function test_it_registers_inflector(): void
     {
         $this->assertInstanceOf('League\Tactician\Handler\MethodNameInflector\MethodNameInflector',
             app('League\Tactician\Handler\MethodNameInflector\MethodNameInflector'));
@@ -41,7 +41,7 @@ class TestProvider extends TestCase{
     /**
      * it registers the extractor
      */
-    public function test_it_registers_extractor()
+    public function test_it_registers_extractor(): void
     {
         $this->assertInstanceOf('League\Tactician\Handler\CommandNameExtractor\CommandNameExtractor',
             app('League\Tactician\Handler\CommandNameExtractor\CommandNameExtractor'));

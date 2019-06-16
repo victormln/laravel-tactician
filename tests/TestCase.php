@@ -16,7 +16,7 @@ class TestCase extends Orchestra
         return ['Victormln\LaravelTactician\Providers\LaravelTacticianServiceProvider'];
     }
 
-    public function test_assert_true()
+    public function test_assert_true(): void
     {
         $this->assertTrue(true);
     }

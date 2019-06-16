@@ -13,7 +13,7 @@ class TestBus extends TestCase{
     /**
      * Test if the class can handle a command
      */
-    public function test_it_handles_a_command()
+    public function test_it_handles_a_command(): void
     {
         $bus = app('Victormln\LaravelTactician\CommandBusInterface');
         $bus->addHandler('Victormln\LaravelTactician\Tests\Stubs\TestCommand',
@@ -23,7 +23,7 @@ class TestBus extends TestCase{
     }
 
 
-    public function test_it_accepts_prebuilt_command_objects()
+    public function test_it_accepts_prebuilt_command_objects(): void
     {
         $bus = app('Victormln\LaravelTactician\CommandBusInterface');
         $bus->addHandler('Victormln\LaravelTactician\Tests\Stubs\TestCommand',
@@ -35,7 +35,7 @@ class TestBus extends TestCase{
     /**
      * Test if a a middleware can be applied to the stack
      */
-    public function test_it_applies_a_middleware()
+    public function test_it_applies_a_middleware(): void
     {
         $bus = app('Victormln\LaravelTactician\CommandBusInterface');
         $bus->addHandler('Victormln\LaravelTactician\Tests\Stubs\TestCommand',
@@ -49,7 +49,7 @@ class TestBus extends TestCase{
     /**
      * Test if the bus is able to map a property in the command
      */
-    public function test_it_maps_input_to_command()
+    public function test_it_maps_input_to_command(): void
     {
         $bus = app('Victormln\LaravelTactician\CommandBusInterface');
         $bus->addHandler('Victormln\LaravelTactician\Tests\Stubs\TestCommand',
@@ -66,7 +66,7 @@ class TestBus extends TestCase{
      * Test the InvalidArgumentException
      * @expectedException InvalidArgumentException
      */
-    public function test_it_trows_exception_if_input_can_not_be_mapped_to_the_command()
+    public function test_it_trows_exception_if_input_can_not_be_mapped_to_the_command(): void
     {
         $bus = app('Victormln\LaravelTactician\CommandBusInterface');
         $bus->addHandler('Victormln\LaravelTactician\Tests\Stubs\TestCommandInput',
@@ -81,7 +81,7 @@ class TestBus extends TestCase{
     /**
      * Test if the bus is able to map a array in the command
      */
-    public function test_it_maps_array_to_command()
+    public function test_it_maps_array_to_command(): void
     {
         $bus = app('Victormln\LaravelTactician\CommandBusInterface');
         $bus->addHandler('Victormln\LaravelTactician\Tests\Stubs\TestCommandArray',
@@ -120,7 +120,7 @@ class TestBus extends TestCase{
     /**
      * Test if the bus is able to map an null array in the command to default value in __construct
      */
-    public function test_it_maps_null_array_in_command_to_default_value_in_construct()
+    public function test_it_maps_null_array_in_command_to_default_value_in_construct(): void
     {
         $bus = app('Victormln\LaravelTactician\CommandBusInterface');
         $bus->addHandler('Victormln\LaravelTactician\Tests\Stubs\TestCommandArray',

@@ -37,7 +37,7 @@ class TestGenerators extends TestCase
     /**
      * Clear the files that tests generated
      */
-    protected function clearTempFiles()
+    protected function clearTempFiles(): void
     {
         if (file_exists($this->getExpectedCommandFile())) {
             unlink($this->getExpectedCommandFile());
@@ -51,7 +51,7 @@ class TestGenerators extends TestCase
     /**
      * Generate Command using Artisan
      */
-    protected function makeCommand()
+    protected function makeCommand(): void
     {
         Artisan::call('make:tactician:command', ['name' => 'Foo']);
     }
@@ -59,14 +59,14 @@ class TestGenerators extends TestCase
     /**
      * Generate Handler using Artisan
      */
-    protected function makeHandler()
+    protected function makeHandler(): void
     {
         Artisan::call('make:tactician:handler', ['name' => 'Foo']);
     }
 
     /**
- * @return string
- */
+     * @return string
+     */
     protected function getExpectedCommandFile()
     {
         return __DIR__ . '/../../vendor/orchestra/testbench-core/laravel/app/CommandBus/Commands/FooCommand.php';
@@ -83,7 +83,7 @@ class TestGenerators extends TestCase
     /**
      * Test Command file is created
      */
-    public function test_it_creates_command()
+    public function test_it_creates_command(): void
     {
         $this->makeCommand();
 
@@ -93,7 +93,7 @@ class TestGenerators extends TestCase
     /**
      * Test DummyClass is replaced correctly in Command
      */
-    public function test_it_names_command()
+    public function test_it_names_command(): void
     {
         $this->makeCommand();
 
@@ -105,7 +105,7 @@ class TestGenerators extends TestCase
     /**
      * Test DummyNamespace is replaced correctly in Command
      */
-    public function test_it_namespaces_command()
+    public function test_it_namespaces_command(): void
     {
         $this->makeCommand();
 
@@ -115,7 +115,7 @@ class TestGenerators extends TestCase
     /**
      * Test Handler file is created
      */
-    public function test_it_creates_handler()
+    public function test_it_creates_handler(): void
     {
         $this->makeHandler();
 
@@ -125,7 +125,7 @@ class TestGenerators extends TestCase
     /**
      * Test DummyClass is replaced correctly in Handler
      */
-    public function test_it_names_handler()
+    public function test_it_names_handler(): void
     {
         $this->makeHandler();
 
@@ -137,7 +137,7 @@ class TestGenerators extends TestCase
     /**
      * Test DummyNamespace is replaced correctly in Handler
      */
-    public function test_it_namespaces_handler()
+    public function test_it_namespaces_handler(): void
     {
         $this->makeHandler();
 
@@ -147,7 +147,7 @@ class TestGenerators extends TestCase
     /**
      * Test instance of Command is injected to Handler
      */
-    public function test_it_adds_handler_to_command()
+    public function test_it_adds_handler_to_command(): void
     {
         $this->makeHandler();
 
