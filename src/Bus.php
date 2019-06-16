@@ -7,9 +7,12 @@ use InvalidArgumentException;
 use League\Tactician\CommandBus;
 use League\Tactician\Plugins\LockingMiddleware;
 use League\Tactician\Handler\CommandHandlerMiddleware;
+use Solidoy\Campaign\Command\CreateCampaignCommandHandler;
+use Victormln\LaravelTactician\Exceptions\CommandHandlerNotExists;
 use Victormln\LaravelTactician\Locator\LocatorInterface;
 use League\Tactician\Handler\MethodNameInflector\MethodNameInflector;
 use League\Tactician\Handler\CommandNameExtractor\CommandNameExtractor;
+use Victormln\LaravelTactician\Middleware\BindCommandWithCommandHandler;
 
 /**
  * The default Command bus Using Tactician, this is an implementation to dispatch commands to their handlers trough a middleware stack, every class is resolved from the laravel's service container.
@@ -19,37 +22,26 @@ use League\Tactician\Handler\CommandNameExtractor\CommandNameExtractor;
 class Bus implements CommandBusInterface
 {
 
-    /**
-     * @var CommandBus
-     */
+    /** @var CommandBus */
     protected $bus;
-    /**
-     * @var CommandNameExtractor
-     */
-    protected $CommandNameExtractor;
-    /**
-     * @var MethodNameInflector
-     */
-    protected $MethodNameInflector;
-    /**
-     * @var LocatorInterface
-     */
-    protected $HandlerLocator;
 
+    /** @var CommandNameExtractor */
+    protected $commandNameExtractor;
 
-    /**
-     * @param MethodNameInflector  $MethodNameInflector
-     * @param CommandNameExtractor $CommandNameExtractor
-     * @param LocatorInterface       $HandlerLocator
-     */
+    /** @var MethodNameInflector */
+    protected $methodNameInflector;
+
+    /** @var LocatorInterface */
+    protected $handlerLocator;
+
     public function __construct(
         MethodNameInflector $MethodNameInflector,
         CommandNameExtractor $CommandNameExtractor,
         LocatorInterface $HandlerLocator
     ) {
-        $this->MethodNameInflector = $MethodNameInflector;
-        $this->CommandNameExtractor = $CommandNameExtractor;
-        $this->HandlerLocator = $HandlerLocator;
+        $this->methodNameInflector = $MethodNameInflector;
+        $this->commandNameExtractor = $CommandNameExtractor;
+        $this->handlerLocator = $HandlerLocator;
     }
 
     /**
@@ -62,7 +54,31 @@ class Bus implements CommandBusInterface
      */
     public function dispatch($command, array $input = [], array $middleware = [])
     {
+        $this->bindCommandWitHisCommandHandler($command);
+
         return $this->handleTheCommand($command, $input, $middleware);
+    }
+
+    private function bindCommandWitHisCommandHandler($command)
+    {
+        $commandFullName = $this->getNameOfClass($command);
+        $commandHandlerFullName = $commandFullName . 'Handler';
+        if(!class_exists($commandHandlerFullName)) {
+            throw CommandHandlerNotExists::with($commandHandlerFullName);
+        }
+
+        $this->addHandler($commandFullName, $commandHandlerFullName);
+    }
+
+    /**
+     * @param $command
+     * @return string
+     */
+    private function getNameOfClass($command): string
+    {
+        $reflectionCommand = new \ReflectionObject($command);
+
+        return $reflectionCommand->getNamespaceName() . '\\' . $reflectionCommand->getShortName();
     }
 
     /**
@@ -74,7 +90,7 @@ class Bus implements CommandBusInterface
      */
     public function addHandler($command, $handler)
     {
-        $this->HandlerLocator->addHandler($handler, $command);
+        $this->handlerLocator->addHandler($handler, $command);
     }
 
     /**
@@ -91,7 +107,7 @@ class Bus implements CommandBusInterface
             array_merge(
                 [new LockingMiddleware()],
                 $this->resolveMiddleware($middleware),
-                [new CommandHandlerMiddleware($this->CommandNameExtractor, $this->HandlerLocator, $this->MethodNameInflector)]
+                [new CommandHandlerMiddleware($this->commandNameExtractor, $this->handlerLocator, $this->methodNameInflector)]
             )
         );
         return $this->bus->handle($this->mapInputToCommand($command, $input));

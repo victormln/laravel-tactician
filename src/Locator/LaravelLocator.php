@@ -12,10 +12,6 @@ use League\Tactician\Exception\MissingHandlerException;
 class LaravelLocator implements LocatorInterface
 {
 
-    /**
-     * The handlers
-     * @var
-     */
     protected $handlers;
 
     /**
