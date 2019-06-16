@@ -18,7 +18,7 @@ use Victormln\LaravelTactician\Middleware\DatabaseTransactions;
  *
  * @package Victormln\LaravelTactician
  */
-class TransactionableBus implements CommandBusInterface
+class TransactionalBus implements CommandBusInterface
 {
 
     /** @var CommandBus */
