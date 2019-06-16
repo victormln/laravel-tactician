@@ -22,7 +22,7 @@
         "phpunit/phpunit" : "7.*",
         "scrutinizer/ocular": "~1.1",
         "mockery/mockery" : "0.9.*",
-        "orchestra/testbench": "~3.5"
+        "orchestra/testbench": "^3.5"
     },
     "autoload": {
         "psr-4": {
