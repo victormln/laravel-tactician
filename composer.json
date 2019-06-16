@@ -1,5 +1,5 @@
 {
-    "name": "joselfonseca/laravel-tactician",
+    "name": "victormln/laravel-tactician",
     "description": "Laravel implementation of the Tactician Command Bus",
     "keywords": [
       "laravel",
@@ -10,8 +10,8 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Jose Luis Fonseca",
-            "email": "jose@ditecnologia.com"
+            "name": "Víctor Molina Ferreira",
+            "email": "victor.molinaf@gmail.com"
         }
     ],
     "require": {
@@ -26,12 +26,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Joselfonseca\\LaravelTactician\\": "src/"
+            "Victormln\\LaravelTactician\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Joselfonseca\\LaravelTactician\\Tests\\": "tests/"
+            "Victormln\\LaravelTactician\\Tests\\": "tests/"
         }
     },
     "config": {
@@ -42,7 +42,7 @@
     "extra": {
       "laravel": {
         "providers": [
-          "Joselfonseca\\LaravelTactician\\Providers\\LaravelTacticianServiceProvider"
+          "Victormln\\LaravelTactician\\Providers\\LaravelTacticianServiceProvider"
         ]
       }
     }

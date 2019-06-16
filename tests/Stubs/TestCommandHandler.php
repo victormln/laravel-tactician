@@ -1,6 +1,6 @@
 <?php
 
-namespace Joselfonseca\LaravelTactician\Tests\Stubs;
+namespace Victormln\LaravelTactician\Tests\Stubs;
 
 
 class TestCommandHandler {

@@ -1,12 +1,12 @@
 <?php
 
-namespace Joselfonseca\LaravelTactician\Commands;
+namespace Victormln\LaravelTactician\Commands;
 
 use Illuminate\Console\GeneratorCommand;
 
 /**
  * Create a new Tactician Command
- * @package Joselfonseca\LaravelTactician\Commands
+ * @package Victormln\LaravelTactician\Commands
  */
 class MakeTacticianCommandCommand extends GeneratorCommand
 {

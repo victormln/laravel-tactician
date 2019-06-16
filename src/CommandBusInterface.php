@@ -1,11 +1,11 @@
 <?php
 
-namespace Joselfonseca\LaravelTactician;
+namespace Victormln\LaravelTactician;
 
 /**
  * The default Command bus Using Tactician, this is an implementation to dispatch commands to their handlers trough a middleware stack, every class is resolved from the laravel's service container.
  *
- * @package Joselfonseca\LaravelTactician
+ * @package Victormln\LaravelTactician
  */
 interface CommandBusInterface
 {

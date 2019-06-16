@@ -1,16 +1,16 @@
 <?php
 
-namespace Joselfonseca\LaravelTactician\Providers;
+namespace Victormln\LaravelTactician\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Joselfonseca\LaravelTactician\Commands\MakeTacticianCommand;
-use Joselfonseca\LaravelTactician\Commands\MakeTacticianCommandCommand;
-use Joselfonseca\LaravelTactician\Commands\MakeTacticianHandlerCommand;
+use Victormln\LaravelTactician\Commands\MakeTacticianCommand;
+use Victormln\LaravelTactician\Commands\MakeTacticianCommandCommand;
+use Victormln\LaravelTactician\Commands\MakeTacticianHandlerCommand;
 
 /**
  * Class LaravelTacticianServiceProvider
  *
- * @package Joselfonseca\LaravelTactician\Providers
+ * @package Victormln\LaravelTactician\Providers
  */
 class LaravelTacticianServiceProvider extends ServiceProvider
 {
@@ -23,10 +23,10 @@ class LaravelTacticianServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerConfig();
-        $this->app->bind('Joselfonseca\LaravelTactician\Locator\LocatorInterface', config('laravel-tactician.locator'));
+        $this->app->bind('Victormln\LaravelTactician\Locator\LocatorInterface', config('laravel-tactician.locator'));
         $this->app->bind('League\Tactician\Handler\MethodNameInflector\MethodNameInflector', config('laravel-tactician.inflector'));
         $this->app->bind('League\Tactician\Handler\CommandNameExtractor\CommandNameExtractor', config('laravel-tactician.extractor'));
-        $this->app->bind('Joselfonseca\LaravelTactician\CommandBusInterface', config('laravel-tactician.bus'));
+        $this->app->bind('Victormln\LaravelTactician\CommandBusInterface', config('laravel-tactician.bus'));
 
         // Register Command Generator
         $this->app->singleton(

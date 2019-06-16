@@ -1,6 +1,6 @@
 <?php
 
-namespace Joselfonseca\LaravelTactician\Tests;
+namespace Victormln\LaravelTactician\Tests;
 
 use Orchestra\Testbench\TestCase as Orchestra;
 
@@ -13,7 +13,7 @@ class TestCase extends Orchestra
      */
     protected function getPackageProviders($app)
     {
-        return ['Joselfonseca\LaravelTactician\Providers\LaravelTacticianServiceProvider'];
+        return ['Victormln\LaravelTactician\Providers\LaravelTacticianServiceProvider'];
     }
 
     public function test_assert_true()

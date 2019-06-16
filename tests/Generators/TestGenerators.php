@@ -1,13 +1,13 @@
 <?php
 
-namespace Joselfonseca\LaravelTactician\Tests\Generators;
+namespace Victormln\LaravelTactician\Tests\Generators;
 
 use Illuminate\Support\Facades\Artisan;
-use Joselfonseca\LaravelTactician\Tests\TestCase;
+use Victormln\LaravelTactician\Tests\TestCase;
 
 /**
  * Class TestGenerators
- * @package Joselfonseca\LaravelTactician\Tests\Generators
+ * @package Victormln\LaravelTactician\Tests\Generators
  */
 class TestGenerators extends TestCase
 {

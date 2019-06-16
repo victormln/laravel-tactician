@@ -1,13 +1,13 @@
 <?php
 
-namespace Joselfonseca\LaravelTactician\Tests\Providers;
+namespace Victormln\LaravelTactician\Tests\Providers;
 
 
-use Joselfonseca\LaravelTactician\Tests\TestCase;
+use Victormln\LaravelTactician\Tests\TestCase;
 
 /**
  * Class TestProvider
- * @package Joselfonseca\LaravelTactician\Tests\Providers
+ * @package Victormln\LaravelTactician\Tests\Providers
  */
 class TestProvider extends TestCase{
 
@@ -16,8 +16,8 @@ class TestProvider extends TestCase{
      */
     public function test_it_loads_service_provider()
     {
-        $this->assertInstanceOf('Joselfonseca\LaravelTactician\Providers\LaravelTacticianServiceProvider',
-            app()->getProvider('Joselfonseca\LaravelTactician\Providers\LaravelTacticianServiceProvider'));
+        $this->assertInstanceOf('Victormln\LaravelTactician\Providers\LaravelTacticianServiceProvider',
+            app()->getProvider('Victormln\LaravelTactician\Providers\LaravelTacticianServiceProvider'));
     }
 
     /**
@@ -25,8 +25,8 @@ class TestProvider extends TestCase{
      */
     public function test_it_registers_locator()
     {
-        $this->assertInstanceOf('Joselfonseca\LaravelTactician\Locator\LocatorInterface',
-            app('Joselfonseca\LaravelTactician\Locator\LocatorInterface'));
+        $this->assertInstanceOf('Victormln\LaravelTactician\Locator\LocatorInterface',
+            app('Victormln\LaravelTactician\Locator\LocatorInterface'));
     }
 
     /**

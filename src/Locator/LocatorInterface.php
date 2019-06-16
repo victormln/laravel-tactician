@@ -1,12 +1,12 @@
 <?php
 
-namespace Joselfonseca\LaravelTactician\Locator;
+namespace Victormln\LaravelTactician\Locator;
 
 use League\Tactician\Handler\Locator\HandlerLocator;
 
 /**
  * Interface LocatorInterface
- * @package Joselfonseca\LaravelTactician\Locator
+ * @package Victormln\LaravelTactician\Locator
  */
 interface LocatorInterface extends HandlerLocator
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Joselfonseca\LaravelTactician\Tests\Stubs;
+namespace Victormln\LaravelTactician\Tests\Stubs;
 
 use League\Tactician\Middleware as TacticianMiddleware;
 

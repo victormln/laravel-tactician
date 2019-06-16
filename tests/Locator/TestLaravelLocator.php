@@ -1,12 +1,12 @@
 <?php
 
-namespace Joselfonseca\LaravelTactician\Tests\Locator;
+namespace Victormln\LaravelTactician\Tests\Locator;
 
-use Joselfonseca\LaravelTactician\Tests\TestCase;
+use Victormln\LaravelTactician\Tests\TestCase;
 
 /**
  * Class TestLaravelLocator
- * @package Joselfonseca\LaravelTactician\Tests\Locator
+ * @package Victormln\LaravelTactician\Tests\Locator
  */
 class TestLaravelLocator extends TestCase{
 
@@ -15,8 +15,8 @@ class TestLaravelLocator extends TestCase{
      */
     public function test_it_resolves_the_laravel_locator()
     {
-        $this->assertInstanceOf('Joselfonseca\LaravelTactician\Locator\LocatorInterface',
-            app('Joselfonseca\LaravelTactician\Locator\LaravelLocator'));
+        $this->assertInstanceOf('Victormln\LaravelTactician\Locator\LocatorInterface',
+            app('Victormln\LaravelTactician\Locator\LaravelLocator'));
     }
 
     /**
@@ -25,7 +25,7 @@ class TestLaravelLocator extends TestCase{
      */
     public function test_it_throws_exception_when_locator_from_laravel_container_is_not_found()
     {
-        $locator = app('Joselfonseca\LaravelTactician\Locator\LocatorInterface');
+        $locator = app('Victormln\LaravelTactician\Locator\LocatorInterface');
         $handler = $locator->getHandlerForCommand('TestCommand');
     }
 
@@ -35,9 +35,9 @@ class TestLaravelLocator extends TestCase{
      */
     public function test_it_throws_exception_when_locator_is_not_resolve_from_laravel_container()
     {
-        $locator = app('Joselfonseca\LaravelTactician\Locator\LocatorInterface');
+        $locator = app('Victormln\LaravelTactician\Locator\LocatorInterface');
         $locator->addHandler('SomeCommandHandler',
-            'Joselfonseca\LaravelTactician\Tests\Stubs\TestCommand');
+            'Victormln\LaravelTactician\Tests\Stubs\TestCommand');
     }
 
     /**
@@ -45,11 +45,11 @@ class TestLaravelLocator extends TestCase{
      */
     public function test_it_is_able_to_resolve_handler_from_laravel_container()
     {
-        $locator = app('Joselfonseca\LaravelTactician\Locator\LocatorInterface');
-        $locator->addHandler('Joselfonseca\LaravelTactician\Tests\Stubs\TestCommandHandler',
-            'Joselfonseca\LaravelTactician\Tests\Stubs\TestCommand');
-        $handler = $locator->getHandlerForCommand('Joselfonseca\LaravelTactician\Tests\Stubs\TestCommand');
-        $this->assertInstanceOf('Joselfonseca\LaravelTactician\Tests\Stubs\TestCommandHandler', $handler);
+        $locator = app('Victormln\LaravelTactician\Locator\LocatorInterface');
+        $locator->addHandler('Victormln\LaravelTactician\Tests\Stubs\TestCommandHandler',
+            'Victormln\LaravelTactician\Tests\Stubs\TestCommand');
+        $handler = $locator->getHandlerForCommand('Victormln\LaravelTactician\Tests\Stubs\TestCommand');
+        $this->assertInstanceOf('Victormln\LaravelTactician\Tests\Stubs\TestCommandHandler', $handler);
     }
 
     /**
@@ -57,15 +57,15 @@ class TestLaravelLocator extends TestCase{
      */
     public function test_it_maps_array_commands()
     {
-        $locator = app('Joselfonseca\LaravelTactician\Locator\LocatorInterface');
+        $locator = app('Victormln\LaravelTactician\Locator\LocatorInterface');
         $locator->addHandlers([
-            'Joselfonseca\LaravelTactician\Tests\Stubs\TestCommand' => 'Joselfonseca\LaravelTactician\Tests\Stubs\TestCommandHandler',
-            'Joselfonseca\LaravelTactician\Tests\Stubs\TestCommandInput' => 'Joselfonseca\LaravelTactician\Tests\Stubs\TestCommandSeccondHandler'
+            'Victormln\LaravelTactician\Tests\Stubs\TestCommand' => 'Victormln\LaravelTactician\Tests\Stubs\TestCommandHandler',
+            'Victormln\LaravelTactician\Tests\Stubs\TestCommandInput' => 'Victormln\LaravelTactician\Tests\Stubs\TestCommandSeccondHandler'
         ]);
-        $handler = $locator->getHandlerForCommand('Joselfonseca\LaravelTactician\Tests\Stubs\TestCommand');
-        $handler2 = $locator->getHandlerForCommand('Joselfonseca\LaravelTactician\Tests\Stubs\TestCommandInput');
-        $this->assertInstanceOf('Joselfonseca\LaravelTactician\Tests\Stubs\TestCommandHandler', $handler);
-        $this->assertInstanceOf('Joselfonseca\LaravelTactician\Tests\Stubs\TestCommandSeccondHandler', $handler2);
+        $handler = $locator->getHandlerForCommand('Victormln\LaravelTactician\Tests\Stubs\TestCommand');
+        $handler2 = $locator->getHandlerForCommand('Victormln\LaravelTactician\Tests\Stubs\TestCommandInput');
+        $this->assertInstanceOf('Victormln\LaravelTactician\Tests\Stubs\TestCommandHandler', $handler);
+        $this->assertInstanceOf('Victormln\LaravelTactician\Tests\Stubs\TestCommandSeccondHandler', $handler2);
     }
 
 }

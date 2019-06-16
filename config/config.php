@@ -12,7 +12,7 @@ return [
     |
     */
 
-    'locator' => Joselfonseca\LaravelTactician\Locator\LaravelLocator::class,
+    'locator' => Victormln\LaravelTactician\Locator\LaravelLocator::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -48,6 +48,6 @@ return [
     |
     */
 
-    'bus' => Joselfonseca\LaravelTactician\Bus::class,
+    'bus' => Victormln\LaravelTactician\Bus::class,
 
 ];

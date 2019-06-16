@@ -1,13 +1,13 @@
 <?php
 
-namespace Joselfonseca\LaravelTactician\Middleware;
+namespace Victormln\LaravelTactician\Middleware;
 
 use DB;
 use League\Tactician\Middleware;
 
 /**
  * Run the command in a database transaction.
- * @package Joselfonseca\LaravelTactician\Middleware
+ * @package Victormln\LaravelTactician\Middleware
  */
 class DatabaseTransactions implements Middleware
 {

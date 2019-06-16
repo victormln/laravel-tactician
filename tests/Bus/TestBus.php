@@ -1,12 +1,12 @@
 <?php
 
-namespace Joselfonseca\LaravelTactician\Tests\Bus;
+namespace Victormln\LaravelTactician\Tests\Bus;
 
-use Joselfonseca\LaravelTactician\Tests\TestCase;
+use Victormln\LaravelTactician\Tests\TestCase;
 
 /**
  * Class TestBus
- * @package Joselfonseca\LaravelTactician\Tests\Bus
+ * @package Victormln\LaravelTactician\Tests\Bus
  */
 class TestBus extends TestCase{
 
@@ -15,21 +15,21 @@ class TestBus extends TestCase{
      */
     public function test_it_handles_a_command()
     {
-        $bus = app('Joselfonseca\LaravelTactician\CommandBusInterface');
-        $bus->addHandler('Joselfonseca\LaravelTactician\Tests\Stubs\TestCommand',
-                         'Joselfonseca\LaravelTactician\Tests\Stubs\TestCommandHandler');
-        $this->assertInstanceOf('Joselfonseca\LaravelTactician\Tests\Stubs\TestCommand',
-                 $bus->dispatch('Joselfonseca\LaravelTactician\Tests\Stubs\TestCommand', [], []));
+        $bus = app('Victormln\LaravelTactician\CommandBusInterface');
+        $bus->addHandler('Victormln\LaravelTactician\Tests\Stubs\TestCommand',
+                         'Victormln\LaravelTactician\Tests\Stubs\TestCommandHandler');
+        $this->assertInstanceOf('Victormln\LaravelTactician\Tests\Stubs\TestCommand',
+                 $bus->dispatch('Victormln\LaravelTactician\Tests\Stubs\TestCommand', [], []));
     }
 
 
     public function test_it_accepts_prebuilt_command_objects()
     {
-        $bus = app('Joselfonseca\LaravelTactician\CommandBusInterface');
-        $bus->addHandler('Joselfonseca\LaravelTactician\Tests\Stubs\TestCommand',
-                         'Joselfonseca\LaravelTactician\Tests\Stubs\TestCommandHandler');
-        $this->assertInstanceOf('Joselfonseca\LaravelTactician\Tests\Stubs\TestCommand',
-                 $bus->dispatch(app('Joselfonseca\LaravelTactician\Tests\Stubs\TestCommand'), [], []));
+        $bus = app('Victormln\LaravelTactician\CommandBusInterface');
+        $bus->addHandler('Victormln\LaravelTactician\Tests\Stubs\TestCommand',
+                         'Victormln\LaravelTactician\Tests\Stubs\TestCommandHandler');
+        $this->assertInstanceOf('Victormln\LaravelTactician\Tests\Stubs\TestCommand',
+                 $bus->dispatch(app('Victormln\LaravelTactician\Tests\Stubs\TestCommand'), [], []));
     }
 
     /**
@@ -37,11 +37,11 @@ class TestBus extends TestCase{
      */
     public function test_it_applies_a_middleware()
     {
-        $bus = app('Joselfonseca\LaravelTactician\CommandBusInterface');
-        $bus->addHandler('Joselfonseca\LaravelTactician\Tests\Stubs\TestCommand',
-                         'Joselfonseca\LaravelTactician\Tests\Stubs\TestCommandHandler');
-        $commandHandled = $bus->dispatch('Joselfonseca\LaravelTactician\Tests\Stubs\TestCommand', [], [
-            'Joselfonseca\LaravelTactician\Tests\Stubs\Middleware'
+        $bus = app('Victormln\LaravelTactician\CommandBusInterface');
+        $bus->addHandler('Victormln\LaravelTactician\Tests\Stubs\TestCommand',
+                         'Victormln\LaravelTactician\Tests\Stubs\TestCommandHandler');
+        $commandHandled = $bus->dispatch('Victormln\LaravelTactician\Tests\Stubs\TestCommand', [], [
+            'Victormln\LaravelTactician\Tests\Stubs\Middleware'
         ]);
         $this->assertEquals('Handled', $commandHandled->addedPropertyInMiddleware);
     }
@@ -51,13 +51,13 @@ class TestBus extends TestCase{
      */
     public function test_it_maps_input_to_command()
     {
-        $bus = app('Joselfonseca\LaravelTactician\CommandBusInterface');
-        $bus->addHandler('Joselfonseca\LaravelTactician\Tests\Stubs\TestCommand',
-                         'Joselfonseca\LaravelTactician\Tests\Stubs\TestCommandHandler');
-        $commandHandled = $bus->dispatch('Joselfonseca\LaravelTactician\Tests\Stubs\TestCommand', [
+        $bus = app('Victormln\LaravelTactician\CommandBusInterface');
+        $bus->addHandler('Victormln\LaravelTactician\Tests\Stubs\TestCommand',
+                         'Victormln\LaravelTactician\Tests\Stubs\TestCommandHandler');
+        $commandHandled = $bus->dispatch('Victormln\LaravelTactician\Tests\Stubs\TestCommand', [
             'property' => 'John Doe'
         ], [
-            'Joselfonseca\LaravelTactician\Tests\Stubs\Middleware'
+            'Victormln\LaravelTactician\Tests\Stubs\Middleware'
         ]);
         $this->assertEquals('John Doe', $commandHandled->property);
     }
@@ -68,13 +68,13 @@ class TestBus extends TestCase{
      */
     public function test_it_trows_exception_if_input_can_not_be_mapped_to_the_command()
     {
-        $bus = app('Joselfonseca\LaravelTactician\CommandBusInterface');
-        $bus->addHandler('Joselfonseca\LaravelTactician\Tests\Stubs\TestCommandInput',
-                         'Joselfonseca\LaravelTactician\Tests\Stubs\TestCommandHandler');
-        $commandHandled = $bus->dispatch('Joselfonseca\LaravelTactician\Tests\Stubs\TestCommandInput', [
+        $bus = app('Victormln\LaravelTactician\CommandBusInterface');
+        $bus->addHandler('Victormln\LaravelTactician\Tests\Stubs\TestCommandInput',
+                         'Victormln\LaravelTactician\Tests\Stubs\TestCommandHandler');
+        $commandHandled = $bus->dispatch('Victormln\LaravelTactician\Tests\Stubs\TestCommandInput', [
 
         ], [
-            'Joselfonseca\LaravelTactician\Tests\Stubs\Middleware'
+            'Victormln\LaravelTactician\Tests\Stubs\Middleware'
         ]);
     }
 
@@ -83,12 +83,12 @@ class TestBus extends TestCase{
      */
     public function test_it_maps_array_to_command()
     {
-        $bus = app('Joselfonseca\LaravelTactician\CommandBusInterface');
-        $bus->addHandler('Joselfonseca\LaravelTactician\Tests\Stubs\TestCommandArray',
-                         'Joselfonseca\LaravelTactician\Tests\Stubs\TestCommandArrayHandler');
+        $bus = app('Victormln\LaravelTactician\CommandBusInterface');
+        $bus->addHandler('Victormln\LaravelTactician\Tests\Stubs\TestCommandArray',
+                         'Victormln\LaravelTactician\Tests\Stubs\TestCommandArrayHandler');
 
         /* Make Command with a set of properties */
-        $contentA = $bus->dispatch('Joselfonseca\LaravelTactician\Tests\Stubs\TestCommandArray', [
+        $contentA = $bus->dispatch('Victormln\LaravelTactician\Tests\Stubs\TestCommandArray', [
             'property' => 'John',
             'propertyTwo' => 'Doe'
         ], []);
@@ -101,7 +101,7 @@ class TestBus extends TestCase{
         ], $contentA);
 
         /* Make same Command with a different set of properties */
-        $contentB = $bus->dispatch('Joselfonseca\LaravelTactician\Tests\Stubs\TestCommandArray', [
+        $contentB = $bus->dispatch('Victormln\LaravelTactician\Tests\Stubs\TestCommandArray', [
             'propertyThree' => 'Richard',
             'propertyFour' => 'Roe',
             'propertyFive' => 'Jr.',
@@ -122,12 +122,12 @@ class TestBus extends TestCase{
      */
     public function test_it_maps_null_array_in_command_to_default_value_in_construct()
     {
-        $bus = app('Joselfonseca\LaravelTactician\CommandBusInterface');
-        $bus->addHandler('Joselfonseca\LaravelTactician\Tests\Stubs\TestCommandArray',
-            'Joselfonseca\LaravelTactician\Tests\Stubs\TestCommandArrayHandler');
+        $bus = app('Victormln\LaravelTactician\CommandBusInterface');
+        $bus->addHandler('Victormln\LaravelTactician\Tests\Stubs\TestCommandArray',
+            'Victormln\LaravelTactician\Tests\Stubs\TestCommandArrayHandler');
 
         /* Make Command with an empty set of properties */
-        $content = $bus->dispatch('Joselfonseca\LaravelTactician\Tests\Stubs\TestCommandArray', [], []);
+        $content = $bus->dispatch('Victormln\LaravelTactician\Tests\Stubs\TestCommandArray', [], []);
 
         $this->assertArrayHasKey('DefaultPropertyOne', $content);
         $this->assertArrayHasKey('DefaultPropertyTwo', $content);

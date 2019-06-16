@@ -27,7 +27,7 @@ Once the dependencies have been downloaded, add the service provider to your con
 ```php
     'providers' => [
         ...
-        Joselfonseca\LaravelTactician\Providers\LaravelTacticianServiceProvider::class
+        Victormln\LaravelTactician\Providers\LaravelTacticianServiceProvider::class
         ...
     ]
 ```
@@ -38,13 +38,13 @@ You are done with the installation!
 To use the command bus you can resolve the bus from the laravel container like so
 
 ```php
-    $bus = app('Joselfonseca\LaravelTactician\CommandBusInterface');
+    $bus = app('Victormln\LaravelTactician\CommandBusInterface');
 ```
 Or you can inject it into a class constructor
 
 ```php
 
-    use Joselfonseca\LaravelTactician\CommandBusInterface;
+    use Victormln\LaravelTactician\CommandBusInterface;
 
     class MyController extends BaseController
     {
@@ -122,13 +122,13 @@ Then you can modify each class name and they will be resolved from the laravel c
 ```php
     return [
         // The locator to bind
-        'locator' => 'Joselfonseca\LaravelTactician\Locator\LaravelLocator',
+        'locator' => 'Victormln\LaravelTactician\Locator\LaravelLocator',
         // The inflector to bind
         'inflector' => 'League\Tactician\Handler\MethodNameInflector\HandleInflector',
         // The extractor to bind
         'extractor' => 'League\Tactician\Handler\CommandNameExtractor\ClassNameExtractor',
         // The bus to bind
-        'bus' => 'Joselfonseca\LaravelTactician\Bus'
+        'bus' => 'Victormln\LaravelTactician\Bus'
     ];
 ```
 
@@ -153,7 +153,7 @@ artisan make:tactician Foo
 
 Laravel tactician includes some useful middleware you can use in your commands
 
-- Database Transactions: This Middleware will run the command inside a database transaction, if any exception is thrown the transaction won't be committed and the database will stay intact, you can find this middleware in `Joselfonseca\LaravelTactician\Middleware\DatabaseTransactions`.  
+- Database Transactions: This Middleware will run the command inside a database transaction, if any exception is thrown the transaction won't be committed and the database will stay intact, you can find this middleware in `Victormln\LaravelTactician\Middleware\DatabaseTransactions`.  
 
 ## Change log
 

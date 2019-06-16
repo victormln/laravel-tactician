@@ -1,12 +1,12 @@
 <?php
 
-namespace Joselfonseca\LaravelTactician\Commands;
+namespace Victormln\LaravelTactician\Commands;
 
 use Illuminate\Console\Command;
 
 /**
  * Generate Tactician Command and Handler
- * @package Joselfonseca\LaravelTactician\Commands
+ * @package Victormln\LaravelTactician\Commands
  */
 class MakeTacticianCommand extends Command
 {
