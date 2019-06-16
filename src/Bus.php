@@ -62,7 +62,7 @@ class Bus implements CommandBusInterface
     {
         $commandFullName = $this->getNameOfClass($command);
         $commandHandlerFullName = $commandFullName . 'Handler';
-        if(!class_exists($commandHandlerFullName)) {
+        if (!class_exists($commandHandlerFullName)) {
             throw CommandHandlerNotExists::with($commandHandlerFullName);
         }
 
@@ -75,7 +75,7 @@ class Bus implements CommandBusInterface
      */
     private function getNameOfClass($command): string
     {
-        if(\is_string($command)) {
+        if (\is_string($command)) {
             return $command;
         }
 
@@ -147,7 +147,7 @@ class Bus implements CommandBusInterface
         $dependencies = [];
         $class = new ReflectionClass($command);
         foreach ($class->getConstructor()->getParameters() as $parameter) {
-            if ( $parameter->getPosition() == 0 && $parameter->isArray() ) {
+            if ($parameter->getPosition() == 0 && $parameter->isArray()) {
                 if ($input !== []) {
                     $dependencies[] = $input;
                 } else {
