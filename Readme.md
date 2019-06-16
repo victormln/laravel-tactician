@@ -4,6 +4,7 @@ Laravel Tactician
 Laravel Tactician in an implementation of the Command Bus Tactician by Ross Tuck and forked from: joselfonseca/laravel-tactician
 
 [![Build Status](https://travis-ci.org/victormln/laravel-tactician.svg)](https://travis-ci.org/victormln/laravel-tactician)
+[![Code Coverage](https://scrutinizer-ci.com/g/victormln/laravel-tactician/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/victormln/laravel-tactician/?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/victormln/laravel-tactician/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/victormln/laravel-tactician/?branch=master)
 
 ## Installation
