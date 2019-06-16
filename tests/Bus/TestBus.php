@@ -72,7 +72,7 @@ class TestBus extends TestCase{
         $bus = app('Victormln\LaravelTactician\CommandBusInterface');
         $bus->addHandler('Victormln\LaravelTactician\Tests\Stubs\TestCommandInput',
                          'Victormln\LaravelTactician\Tests\Stubs\TestCommandHandler');
-        $commandHandled = $bus->dispatch('Victormln\LaravelTactician\Tests\Stubs\TestCommandInput', [
+        $commandHandler = $bus->dispatch('Victormln\LaravelTactician\Tests\Stubs\TestCommandInput', [
 
         ], [
             'Victormln\LaravelTactician\Tests\Stubs\Middleware'

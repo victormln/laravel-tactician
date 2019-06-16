@@ -7,12 +7,10 @@ use InvalidArgumentException;
 use League\Tactician\CommandBus;
 use League\Tactician\Plugins\LockingMiddleware;
 use League\Tactician\Handler\CommandHandlerMiddleware;
-use Solidoy\Campaign\Command\CreateCampaignCommandHandler;
 use Victormln\LaravelTactician\Exceptions\CommandHandlerNotExists;
 use Victormln\LaravelTactician\Locator\LocatorInterface;
 use League\Tactician\Handler\MethodNameInflector\MethodNameInflector;
 use League\Tactician\Handler\CommandNameExtractor\CommandNameExtractor;
-use Victormln\LaravelTactician\Middleware\BindCommandWithCommandHandler;
 
 /**
  * The default Command bus Using Tactician, this is an implementation to dispatch commands to their handlers trough a middleware stack, every class is resolved from the laravel's service container.
@@ -50,6 +48,7 @@ class Bus implements CommandBusInterface
      * @param  object $command    Command to be dispatched
      * @param  array  $input      Array of input to map to the command
      * @param  array  $middleware Array of middleware class name to add to the stack, they are resolved from the laravel container
+     * @throws CommandHandlerNotExists
      * @return mixed
      */
     public function dispatch($command, array $input = [], array $middleware = [])
