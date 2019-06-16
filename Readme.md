@@ -3,9 +3,9 @@ Laravel Tactician
 
 Laravel Tactician in an implementation of the Command Bus Tactician by Ross Tuck.
 
-[![Build Status](https://travis-ci.org/joselfonseca/laravel-tactician.svg)](https://travis-ci.org/joselfonseca/laravel-tactician)
-[![Code Coverage](https://scrutinizer-ci.com/g/joselfonseca/laravel-tactician/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/joselfonseca/laravel-tactician/?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/joselfonseca/laravel-tactician/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/joselfonseca/laravel-tactician/?branch=master)
+[![Build Status](https://travis-ci.org/victormln/laravel-tactician.svg)](https://travis-ci.org/victormln/laravel-tactician)
+[![Code Coverage](https://scrutinizer-ci.com/g/victormln/laravel-tactician/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/victormln/laravel-tactician/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/victormln/laravel-tactician/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/victormln/laravel-tactician/?branch=master)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/4bef582c-187d-4cbe-bcf8-021d7d6e5f5d/small.png)](https://insight.sensiolabs.com/projects/4bef582c-187d-4cbe-bcf8-021d7d6e5f5d)
 
 ## Installation
@@ -13,7 +13,7 @@ Laravel Tactician in an implementation of the Command Bus Tactician by Ross Tuck
 To install this update your composer.json file to require
 
 ```json
-    "joselfonseca/laravel-tactician" : "0.5.*"
+    "victormln/laravel-tactician" : "0.5.*"
 ```
 
 #### >= laravel5.5
@@ -107,7 +107,7 @@ For more information about the usage of the tactician command bus please visit [
 
 ## Example
 
-Check out this example of the package implemented in a simple create order command [https://gist.github.com/joselfonseca/24ee0e96666a06b16f92](https://gist.github.com/joselfonseca/24ee0e96666a06b16f92)
+Check out this example of the package implemented in a simple create order command [https://gist.github.com/victormln/24ee0e96666a06b16f92](https://gist.github.com/victormln/24ee0e96666a06b16f92)
 
 ## Bindings
 
@@ -157,7 +157,7 @@ Laravel tactician includes some useful middleware you can use in your commands
 
 ## Change log
 
-Please see the releases page [https://github.com/joselfonseca/laravel-tactician/releases](https://github.com/joselfonseca/laravel-tactician/releases)
+Please see the releases page [https://github.com/victormln/laravel-tactician/releases](https://github.com/victormln/laravel-tactician/releases)
 
 ## Tests
 
@@ -182,7 +182,7 @@ If you discover any security related issues, please email jose at ditecnologia d
 
 ## Credits
 
-- [Jose Luis Fonseca](https://github.com/joselfonseca)
+- [Jose Luis Fonseca](https://github.com/victormln)
 - [All Contributors](../../contributors)
 
 ## License
