@@ -33,13 +33,13 @@ class Bus implements CommandBusInterface
     protected $handlerLocator;
 
     public function __construct(
-        MethodNameInflector $MethodNameInflector,
-        CommandNameExtractor $CommandNameExtractor,
-        LocatorInterface $HandlerLocator
+        MethodNameInflector $methodNameInflector,
+        CommandNameExtractor $commandNameExtractor,
+        LocatorInterface $handlerLocator
     ) {
-        $this->methodNameInflector = $MethodNameInflector;
-        $this->commandNameExtractor = $CommandNameExtractor;
-        $this->handlerLocator = $HandlerLocator;
+        $this->methodNameInflector = $methodNameInflector;
+        $this->commandNameExtractor = $commandNameExtractor;
+        $this->handlerLocator = $handlerLocator;
     }
 
     /**
