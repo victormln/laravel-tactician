@@ -2,6 +2,7 @@
 
 namespace Victormln\LaravelTactician\Tests\Bus;
 
+use http\Exception\InvalidArgumentException;
 use Victormln\LaravelTactician\Tests\TestCase;
 
 /**
@@ -64,10 +65,10 @@ class TestBus extends TestCase{
 
     /**
      * Test the InvalidArgumentException
-     * @expectedException InvalidArgumentException
      */
     public function test_it_trows_exception_if_input_can_not_be_mapped_to_the_command(): void
     {
+        $this->expectException(InvalidArgumentException::class);
         $bus = app('Victormln\LaravelTactician\CommandBusInterface');
         $bus->addHandler('Victormln\LaravelTactician\Tests\Stubs\TestCommandInput',
                          'Victormln\LaravelTactician\Tests\Stubs\TestCommandHandler');
