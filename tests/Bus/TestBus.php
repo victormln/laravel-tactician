@@ -2,6 +2,7 @@
 
 namespace Victormln\LaravelTactician\Tests\Bus;
 
+use Victormln\LaravelTactician\Exceptions\CommandHandlerNotExists;
 use Victormln\LaravelTactician\Tests\TestCase;
 
 /**
@@ -67,7 +68,7 @@ class TestBus extends TestCase{
      */
     public function test_it_trows_exception_if_input_can_not_be_mapped_to_the_command(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(CommandHandlerNotExists::class);
         $bus = app('Victormln\LaravelTactician\CommandBusInterface');
         $bus->addHandler('Victormln\LaravelTactician\Tests\Stubs\TestCommandInput',
                          'Victormln\LaravelTactician\Tests\Stubs\TestCommandHandler');
