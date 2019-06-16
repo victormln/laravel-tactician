@@ -11,12 +11,12 @@ Laravel Tactician in an implementation of the Command Bus Tactician by Ross Tuck
 To install this update your composer.json file to require
 
 ```json
-    "victormln/laravel-tactician" : "0.5.*"
+    "victormln/laravel-tactician" : "1.0.*"
 ```
 
 #### >= laravel5.5
 
-ServiceProvider will be attached automatically
+ServiceProvider will be the magic for you
 
 #### Other
 
@@ -56,12 +56,9 @@ Or you can inject it into a class constructor
 
 ```
 
-Once you have the bus instance you can add your handler for the command to be dispatched
+**NOTE: This package is build to automatically grab the CommandHandler from the same path as the Command, so you don't have to do anything to bind the two files.**
 
-```php
-    $bus->addHandler('SomeCommand', 'SomeHandler');
-```
-Now you can dispatch the command with the middleware.
+After inject the commandBus, you can dispatch the command with the middleware.
 
 ```php
     // first parameter is the class name of the command
@@ -180,7 +177,8 @@ If you discover any security related issues, please email jose at ditecnologia d
 
 ## Credits
 
-- [Jose Luis Fonseca](https://github.com/victormln)
+- [Víctor Molina](https://github.com/victormln)
+- Forked: from [Jose Luis Fonseca](https://github.com/joselfonseca)
 - [All Contributors](../../contributors)
 
 ## License
