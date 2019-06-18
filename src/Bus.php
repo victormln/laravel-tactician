@@ -66,16 +66,8 @@ class Bus implements CommandBusInterface
         $this->addHandler($commandFullName, $commandHandlerFullName);
     }
 
-    /**
-     * @param $command
-     * @return string
-     */
     private function getNameOfClass($command): string
     {
-        if (\is_string($command)) {
-            return $command;
-        }
-
         $reflectionCommand = new \ReflectionObject($command);
 
         return $reflectionCommand->getNamespaceName() . '\\' . $reflectionCommand->getShortName();
