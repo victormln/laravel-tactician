@@ -49,6 +49,14 @@ class TestGenerators extends TestCase
     }
 
     /**
+     * Generate Command and Command Handler using Artisan
+     */
+    protected function makeCommandAndCommandHandler(): void
+    {
+        Artisan::call('make:tactician', ['name' => 'Foo']);
+    }
+
+    /**
      * Generate Command using Artisan
      */
     protected function makeCommand(): void
@@ -88,6 +96,25 @@ class TestGenerators extends TestCase
         $this->makeCommand();
 
         $this->assertTrue(file_exists($this->getExpectedCommandFile()));
+    }
+
+    public function test_it_creates_command_and_command_handler(): void
+    {
+        $this->makeCommandAndCommandHandler();
+
+        // Test command
+        $this->assertTrue(file_exists($this->getExpectedCommandFile()));
+        $this->assertTrue(strpos(file_get_contents($this->getExpectedCommandFile()), 'Class FooCommand') !== false);
+        $this->assertTrue(strpos(file_get_contents($this->getExpectedCommandFile()), 'class FooCommand') !== false);
+        $this->assertTrue(strpos(file_get_contents($this->getExpectedCommandFile()), 'FooCommand constructor') !== false);
+        $this->assertTrue(strpos(file_get_contents($this->getExpectedCommandFile()), 'namespace App\CommandBus\Commands;') !== false);
+
+        // Test command handler
+        $this->assertTrue(file_exists($this->getExpectedHandlerFile()));
+        $this->assertTrue(strpos(file_get_contents($this->getExpectedHandlerFile()), 'Class FooHandler') !== false);
+        $this->assertTrue(strpos(file_get_contents($this->getExpectedHandlerFile()), 'class FooHandler') !== false);
+        $this->assertTrue(strpos(file_get_contents($this->getExpectedHandlerFile()), 'FooHandler constructor') !== false);
+        $this->assertTrue(strpos(file_get_contents($this->getExpectedHandlerFile()), 'namespace App\CommandBus\Handlers;') !== false);
     }
 
     /**
