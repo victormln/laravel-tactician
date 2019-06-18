@@ -75,7 +75,7 @@ For more information about the usage of the tactician command bus please visit [
 
 ## Example
 
-Check out this example of the package implemented in a simple create order command [https://gist.github.com/victormln/a886a71d60f0789df669ac72b381b743](https://gist.github.com/victormln/a886a71d60f0789df669ac72b381b743)
+Check out this example of the package implemented in a simple create order command [https://gist.github.com/victormln/f06a86f7204b251d6d6c876d5e516a67](https://gist.github.com/victormln/f06a86f7204b251d6d6c876d5e516a67)
 
 ## Bindings
 
