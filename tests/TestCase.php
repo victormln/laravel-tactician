@@ -16,8 +16,9 @@ class TestCase extends Orchestra
         return ['Victormln\LaravelTactician\Providers\LaravelTacticianServiceProvider'];
     }
 
-    public function test_assert_true(): void
+    public function test_assert_true_to_not_warning(): void
     {
+        // Do silly test to not show a warning in phpunit
         $this->assertTrue(true);
     }
 

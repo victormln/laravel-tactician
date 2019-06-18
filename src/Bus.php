@@ -2,8 +2,6 @@
 
 namespace Victormln\LaravelTactician;
 
-use ReflectionClass;
-use InvalidArgumentException;
 use League\Tactician\CommandBus;
 use League\Tactician\Plugins\LockingMiddleware;
 use League\Tactician\Handler\CommandHandlerMiddleware;
@@ -46,16 +44,15 @@ class Bus implements CommandBusInterface
      * Dispatch a command
      *
      * @param  object $command    Command to be dispatched
-     * @param  array  $input      Array of input to map to the command
      * @param  array  $middleware Array of middleware class name to add to the stack, they are resolved from the laravel container
      * @throws CommandHandlerNotExists
      * @return mixed
      */
-    public function dispatch($command, array $input = [], array $middleware = [])
+    public function dispatch($command, array $middleware = [])
     {
         $this->bindCommandWitHisCommandHandler($command);
 
-        return $this->handleTheCommand($command, $input, $middleware);
+        return $this->handleTheCommand($command, $middleware);
     }
 
     private function bindCommandWitHisCommandHandler($command)
@@ -100,11 +97,10 @@ class Bus implements CommandBusInterface
      * Handle the command
      *
      * @param  $command
-     * @param  $input
      * @param  $middleware
      * @return mixed
      */
-    protected function handleTheCommand($command, $input, array $middleware)
+    protected function handleTheCommand($command, array $middleware)
     {
         $this->bus = new CommandBus(
             array_merge(
@@ -113,7 +109,7 @@ class Bus implements CommandBusInterface
                 [new CommandHandlerMiddleware($this->commandNameExtractor, $this->handlerLocator, $this->methodNameInflector)]
             )
         );
-        return $this->bus->handle($this->mapInputToCommand($command, $input));
+        return $this->bus->handle($command);
     }
 
     /**
@@ -130,55 +126,6 @@ class Bus implements CommandBusInterface
         }
 
         return $m;
-    }
-
-    /**
-     * Map the input to the command
-     *
-     * @param  $command
-     * @param  $input
-     * @return object
-     */
-    protected function mapInputToCommand($command, $input)
-    {
-        if (is_object($command)) {
-            return $command;
-        }
-        $dependencies = [];
-        $class = new ReflectionClass($command);
-        foreach ($class->getConstructor()->getParameters() as $parameter) {
-            if ($parameter->getPosition() == 0 && $parameter->isArray()) {
-                if ($input !== []) {
-                    $dependencies[] = $input;
-                } else {
-                    $dependencies[] = $this->getDefaultValueOrFail($parameter);
-                }
-            } else {
-                $name = $parameter->getName();
-                if (array_key_exists($name, $input)) {
-                    $dependencies[] = $input[$name];
-                } else {
-                    $dependencies[] = $this->getDefaultValueOrFail($parameter);
-                }
-            }
-        }
-
-        return $class->newInstanceArgs($dependencies);
-    }
-
-    /**
-     * Returns Default Value for parameter if it exists Or Fail
-     *
-     * @ReflectionParameter $parameter
-     * @return mixed
-     */
-    private function getDefaultValueOrFail($parameter)
-    {
-        if (! $parameter->isDefaultValueAvailable()) {
-            throw new InvalidArgumentException("Unable to map input to command: {$parameter->getName()}");
-        }
-
-        return $parameter->getDefaultValue();
     }
 
 }

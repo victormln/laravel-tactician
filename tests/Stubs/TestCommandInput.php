@@ -5,10 +5,15 @@ namespace Victormln\LaravelTactician\Tests\Stubs;
 
 class TestCommandInput
 {
-    public $property;
+    private $property;
 
     public function __construct($property)
     {
         $this->property = $property;
+    }
+
+    public function property()
+    {
+        return $this->property;
     }
 }

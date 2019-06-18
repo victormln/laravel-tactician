@@ -13,11 +13,10 @@ interface CommandBusInterface
      * Dispatch a command
      *
      * @param  object $command    Command to be dispatched
-     * @param  array  $input      Array of input to map to the command
      * @param  array  $middleware Array of middleware class name to add to the stack, they are resolved from the laravel container they are resolved fro the laravel container
      * @return mixed
      */
-    public function dispatch($command, array $input = [], array $middleware = []);
+    public function dispatch($command, array $middleware = []);
 
     /**
      * Add the Command Handler

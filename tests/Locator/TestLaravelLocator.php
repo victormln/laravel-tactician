@@ -56,18 +56,19 @@ class TestLaravelLocator extends TestCase{
 
     /**
      * Add more than one command => handler to the bus
+     * @group failing
      */
     public function test_it_maps_array_commands(): void
     {
         $locator = app('Victormln\LaravelTactician\Locator\LocatorInterface');
         $locator->addHandlers([
             'Victormln\LaravelTactician\Tests\Stubs\TestCommand' => 'Victormln\LaravelTactician\Tests\Stubs\TestCommandHandler',
-            'Victormln\LaravelTactician\Tests\Stubs\TestCommandInput' => 'Victormln\LaravelTactician\Tests\Stubs\TestCommandSeccondHandler'
+            'Victormln\LaravelTactician\Tests\Stubs\TestCommandInput' => 'Victormln\LaravelTactician\Tests\Stubs\TestCommandSecondHandler'
         ]);
         $handler = $locator->getHandlerForCommand('Victormln\LaravelTactician\Tests\Stubs\TestCommand');
         $handler2 = $locator->getHandlerForCommand('Victormln\LaravelTactician\Tests\Stubs\TestCommandInput');
         $this->assertInstanceOf('Victormln\LaravelTactician\Tests\Stubs\TestCommandHandler', $handler);
-        $this->assertInstanceOf('Victormln\LaravelTactician\Tests\Stubs\TestCommandSeccondHandler', $handler2);
+        $this->assertInstanceOf('Victormln\LaravelTactician\Tests\Stubs\TestCommandSecondHandler', $handler2);
     }
 
 }

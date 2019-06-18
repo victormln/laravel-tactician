@@ -10,15 +10,17 @@ Laravel Tactician in an implementation of the Command Bus Tactician by Ross Tuck
 
 ## Installation
 
-To install this update your composer.json file to require
+Simply do a composer require:
+
+```bash
+    composer require victormln/laravel-tactician:1.0.*
+```
+
+Or add this line to your composer.json file
 
 ```json
     "victormln/laravel-tactician" : "1.0.*"
 ```
-
-#### >= laravel5.5
-
-ServiceProvider will do the magic for you
 
 #### Other
 
@@ -69,58 +71,18 @@ After inject the commandBus, you can dispatch the command as simple as this:
     $bus->dispatch(new SimpleCommand());
 ```
 
-Or as string and an array of data
-
-```php
-    // first parameter is the class name of the command
-    // Second parameter is an array of input data to be mapped to the command
-    // Third parameter is an array of middleware class names to be added to the stack
-    $bus->dispatch('SomeCommand', [], []);
-```
-
-You can map the input data array of the Command's _constructor_ with plain list of arguments or the array itself. For example:
-
-```php
-    // Send parameters in an array of input data ...    
-    $bus->dispatch('SomeCommand', [
-        'propertyOne'   => 'One',
-        'propertyTwo'   => 'Two',
-        'propertyThree' => 'Three',
-    ], []);
-    
-    // ... and recive them as individual parameters ... 
-    Class SomeCommand {
-        public function __construct($propertyOne = 'A', $propertyTwo = 'B', $propertyThree = 'C'){
-            //...
-        }
-    }
-    
-    // ... or recive array of input data itself 
-        Class SomeCommand {
-            public function __construct(array $data = [
-                'propertyOne'   => 'A',
-                'propertyTwo'   => 'B',
-                'propertyThree' => 'C',
-            ]){
-                //...
-            }
-        }
-```
-
-Of course, you can use default values!
-
 For more information about the usage of the tactician command bus please visit [http://tactician.thephpleague.com/](http://tactician.thephpleague.com/)
 
 ## Example
 
-Check out this example of the package implemented in a simple create order command [https://gist.github.com/victormln/24ee0e96666a06b16f92](https://gist.github.com/victormln/24ee0e96666a06b16f92)
+Check out this example of the package implemented in a simple create order command [https://gist.github.com/victormln/a886a71d60f0789df669ac72b381b743](https://gist.github.com/victormln/a886a71d60f0789df669ac72b381b743)
 
 ## Bindings
 
 You can configure the bindings for the locator, inflector, extractor and default bus publishing the config file like so
 
 ```bash
-    php artisan vendor:publish
+    php artisan vendor:publish --provider="Victormln\LaravelTactician\Providers\LaravelTacticianServiceProvider"
 ```
 
 Then you can modify each class name and they will be resolved from the laravel container

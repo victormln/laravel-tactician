@@ -3,7 +3,7 @@
 namespace Victormln\LaravelTactician\Tests\Stubs;
 
 
-class TestCommandSeccondHandler
+class TestCommandSecondHandler
 {
     public function handle($command)
     {

@@ -5,7 +5,7 @@ namespace Victormln\LaravelTactician\Tests\Stubs;
 
 class TestCommandArray {
 
-    public $data;
+    private $data;
 
     public function __construct(array $data = [
         'DefaultPropertyOne' => 'John',
@@ -13,6 +13,11 @@ class TestCommandArray {
     ])
     {
         $this->data = $data;
+    }
+
+    public function data(): array
+    {
+        return $this->data;
     }
 
 }

@@ -8,7 +8,7 @@ class Middleware implements TacticianMiddleware{
 
     public function execute($command, callable $next)
     {
-        $command->addedPropertyInMiddleware = "Handled";
+        $command->addedPropertyInMiddleware = true;
         return $next($command);
     }
 
