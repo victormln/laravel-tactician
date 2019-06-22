@@ -12,7 +12,7 @@ use League\Tactician\Exception\MissingHandlerException;
 class LaravelLocator implements LocatorInterface
 {
 
-    protected $handlers;
+    private $handlers;
 
     /**
      * Bind a handler instance to receive all commands with a certain class
@@ -60,5 +60,10 @@ class LaravelLocator implements LocatorInterface
         }
 
         return $this->handlers[$commandName];
+    }
+
+    public function handlers()
+    {
+        return $this->handlers;
     }
 }

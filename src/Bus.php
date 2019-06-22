@@ -50,6 +50,10 @@ class Bus implements CommandBusInterface
      */
     public function dispatch($command, array $middleware = [])
     {
+        if(\is_array($this->handlerLocator->handlers())
+            && \count($this->handlerLocator->handlers()) > 0) {
+            return $this->handleTheCommand($command, $middleware);
+        }
         $this->bindCommandWitHisCommandHandler($command);
 
         return $this->handleTheCommand($command, $middleware);
