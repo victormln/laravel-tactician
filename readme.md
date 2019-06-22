@@ -51,6 +51,9 @@ Or you can inject it into a class constructor
     class MyController extends BaseController
     {
 
+        /** @var CommandBusInterface */
+        private $bus;
+
         public function __construct(CommandBusInterface $bus)
         {
             $this->bus = $bus;
@@ -63,7 +66,7 @@ Or you can inject it into a class constructor
 After inject the commandBus, you can dispatch the command as simple as this:
 
 ```php
-    // First parameter excepts the command
+    // First parameter expects the command
     $bus->dispatch(new SimpleCommand());
 ```
 
@@ -71,7 +74,6 @@ After inject the commandBus, you can dispatch the command as simple as this:
 
 ```php
     $bus->addHandler('Path\SimpleCommand', 'Path\SimpleCommandHandler');
-    // First parameter excepts the command
     $bus->dispatch(new SimpleCommand());
 ```
 
