@@ -1,7 +1,7 @@
 Laravel Tactician
 ===============================
 
-Laravel Tactician in an implementation of the Command Bus Tactician by Ross Tuck and forked from: joselfonseca/laravel-tactician
+Laravel Tactician in an implementation of the Command Bus Tactician by Ross Tuck and based on: joselfonseca/laravel-tactician
 
 [![Build Status](https://travis-ci.org/victormln/laravel-tactician.svg)](https://travis-ci.org/victormln/laravel-tactician)
 [![Latest Stable Version](https://poser.pugx.org/victormln/laravel-tactician/v/stable)](https://packagist.org/packages/victormln/laravel-tactician)
@@ -151,7 +151,7 @@ If you discover any security related issues, please email jose at ditecnologia d
 ## Credits
 
 - [Víctor Molina](https://github.com/victormln)
-- Forked: from [Jose Luis Fonseca](https://github.com/joselfonseca)
+- Based on [Jose Luis Fonseca](https://github.com/joselfonseca)
 - [All Contributors](../../contributors)
 
 ## License
