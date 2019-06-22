@@ -56,7 +56,6 @@ class TestLaravelLocator extends TestCase{
 
     /**
      * Add more than one command => handler to the bus
-     * @group failing
      */
     public function test_it_maps_array_commands(): void
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Victormln\LaravelTactician\Tests\Bus;
+namespace Victormln\LaravelTactician\Tests;
 
 use Victormln\LaravelTactician\Exceptions\CommandHandlerNotExists;
 use Victormln\LaravelTactician\Tests\Stubs\TestCommandInput;
@@ -11,7 +11,8 @@ use Victormln\LaravelTactician\Tests\Stubs\TestCommand;
  * Class TestBus
  * @package Victormln\LaravelTactician\Tests\Bus
  */
-class TestBus extends TestCase{
+class TestBus extends TestCase
+{
 
     /**
      * Test if the class can handle a command
@@ -36,7 +37,6 @@ class TestBus extends TestCase{
 
     /**
      * Test if a a middleware can be applied to the stack
-     * @group failing
      */
     public function test_it_applies_a_middleware(): void
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Victormln\LaravelTactician\Tests\Generators;
+namespace Victormln\LaravelTactician\Tests\Commands;
 
 use Illuminate\Support\Facades\Artisan;
 use Victormln\LaravelTactician\Tests\TestCase;
@@ -72,18 +72,13 @@ class TestGenerators extends TestCase
         Artisan::call('make:tactician:handler', ['name' => 'Foo']);
     }
 
-    /**
-     * @return string
-     */
-    protected function getExpectedCommandFile()
+
+    protected function getExpectedCommandFile(): string
     {
         return __DIR__ . '/../../vendor/orchestra/testbench-core/laravel/app/CommandBus/Commands/FooCommand.php';
     }
 
-    /**
-     * @return string
-     */
-    protected function getExpectedHandlerFile()
+    protected function getExpectedHandlerFile(): string
     {
         return __DIR__ . '/../../vendor/orchestra/testbench-core/laravel/app/CommandBus/Handlers/FooHandler.php';
     }

@@ -60,14 +60,18 @@ Or you can inject it into a class constructor
 
 ```
 
-**NOTE: This package is build to automatically grab the CommandHandler from the same path as the Command, so you don't have to do anything to bind the two files.**
-
 After inject the commandBus, you can dispatch the command as simple as this:
 
 ```php
-    // first parameter is the class name of the command
-    // Second parameter is an array of input data to be mapped to the command
-    // Third parameter is an array of middleware class names to be added to the stack
+    // First parameter excepts the command
+    $bus->dispatch(new SimpleCommand());
+```
+
+**NOTE: This package is build to automatically grab the CommandHandler from the same path as the Command, so you don't have to do anything to bind the two files. But if you want, you can bind the command handler manually calling the addHandler method**
+
+```php
+    $bus->addHandler(new SimpleCommand, new SimpleCommandHandler());
+    // First parameter excepts the command
     $bus->dispatch(new SimpleCommand());
 ```
 

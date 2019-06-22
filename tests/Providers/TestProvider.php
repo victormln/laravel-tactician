@@ -21,7 +21,7 @@ class TestProvider extends TestCase{
     }
 
     /**
-     * it registers a locator
+     * It registers a locator
      */
     public function test_it_registers_locator(): void
     {
@@ -29,9 +29,6 @@ class TestProvider extends TestCase{
             app('Victormln\LaravelTactician\Locator\LocatorInterface'));
     }
 
-    /**
-     * It registers the inflector
-     */
     public function test_it_registers_inflector(): void
     {
         $this->assertInstanceOf('League\Tactician\Handler\MethodNameInflector\MethodNameInflector',
@@ -39,7 +36,7 @@ class TestProvider extends TestCase{
     }
 
     /**
-     * it registers the extractor
+     * It registers the extractor
      */
     public function test_it_registers_extractor(): void
     {

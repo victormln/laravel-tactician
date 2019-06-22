@@ -9,6 +9,8 @@ use Victormln\LaravelTactician\Exceptions\CommandHandlerNotExists;
 use Victormln\LaravelTactician\Locator\LocatorInterface;
 use League\Tactician\Handler\MethodNameInflector\MethodNameInflector;
 use League\Tactician\Handler\CommandNameExtractor\CommandNameExtractor;
+use Victormln\LaravelTactician\Services\GetCommandHandlerNameService;
+use Victormln\LaravelTactician\Services\GetCommandHandlerService;
 
 /**
  * The default Command bus Using Tactician, this is an implementation to dispatch commands to their handlers trough a middleware stack, every class is resolved from the laravel's service container.
@@ -50,31 +52,18 @@ class Bus implements CommandBusInterface
      */
     public function dispatch($command, array $middleware = [])
     {
-        if(\is_array($this->handlerLocator->handlers())
-            && \count($this->handlerLocator->handlers()) > 0) {
-            return $this->handleTheCommand($command, $middleware);
+        if(!$this->handlerLocator->handlers()) {
+            $this->bindCommandWitHisCommandHandler($command);
         }
-        $this->bindCommandWitHisCommandHandler($command);
 
         return $this->handleTheCommand($command, $middleware);
     }
 
-    private function bindCommandWitHisCommandHandler($command)
+    private function bindCommandWitHisCommandHandler($commandClass)
     {
-        $commandFullName = $this->getNameOfClass($command);
-        $commandHandlerFullName = $commandFullName . 'Handler';
-        if (!class_exists($commandHandlerFullName)) {
-            throw CommandHandlerNotExists::with($commandHandlerFullName);
-        }
+        [$commandFullName, $commandHandlerFullName] = (new GetCommandHandlerNameService())->execute($commandClass);
 
         $this->addHandler($commandFullName, $commandHandlerFullName);
-    }
-
-    private function getNameOfClass($command): string
-    {
-        $reflectionCommand = new \ReflectionObject($command);
-
-        return $reflectionCommand->getNamespaceName() . '\\' . $reflectionCommand->getShortName();
     }
 
     /**
