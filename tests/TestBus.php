@@ -57,4 +57,18 @@ class TestBus extends TestCase
         $bus = app('Victormln\LaravelTactician\CommandBusInterface');
         $commandHandler = $bus->dispatch(new TestCommandInput('HELLO'));
     }
+
+    /**
+     * Test if can add a handler manually and can be handled
+     */
+    public function test_it_handles_a_command_adding_manually_the_handler(): void
+    {
+        $bus = app('Victormln\LaravelTactician\CommandBusInterface');
+        $bus->addHandler('Victormln\LaravelTactician\Tests\Stubs\TestCommand',
+            'Victormln\LaravelTactician\Tests\Stubs\TestCommandHandler');
+        $this->assertInstanceOf(
+            TestCommand::class,
+            $bus->dispatch(new TestCommand())
+        );
+    }
 }

@@ -70,7 +70,7 @@ After inject the commandBus, you can dispatch the command as simple as this:
 **NOTE: This package is build to automatically grab the CommandHandler from the same path as the Command, so you don't have to do anything to bind the two files. But if you want, you can bind the command handler manually calling the addHandler method**
 
 ```php
-    $bus->addHandler(new SimpleCommand, new SimpleCommandHandler());
+    $bus->addHandler('Path\SimpleCommand', 'Path\SimpleCommandHandler');
     // First parameter excepts the command
     $bus->dispatch(new SimpleCommand());
 ```
@@ -155,7 +155,7 @@ If you discover any security related issues, please email jose at ditecnologia d
 ## Credits
 
 - [Víctor Molina](https://github.com/victormln)
-- Based on [Jose Luis Fonseca](https://github.com/joselfonseca)
+- Based on [Jose Luis Fonseca - LaravelTactician](https://github.com/joselfonseca/laravel-tactician)
 - [All Contributors](../../contributors)
 
 ## License
