@@ -5,7 +5,6 @@ namespace Victormln\LaravelTactician\Tests;
 use Victormln\LaravelTactician\Exceptions\CommandHandlerNotExists;
 use Victormln\LaravelTactician\Tests\Stubs\TestCommandArray;
 use Victormln\LaravelTactician\Tests\Stubs\TestCommandInput;
-use Victormln\LaravelTactician\Tests\TestCase;
 use Victormln\LaravelTactician\Tests\Stubs\TestCommand;
 
 /**
