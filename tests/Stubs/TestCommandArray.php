@@ -8,10 +8,9 @@ class TestCommandArray {
     private $data;
 
     public function __construct(array $data = [
-        'DefaultPropertyOne' => 'John',
-        'DefaultPropertyTwo' => 'Doe'
-    ])
-    {
+        'defaultPropertyOne' => 'John',
+        'defaultPropertyTwo' => 'Doe'
+    ]) {
         $this->data = $data;
     }
 

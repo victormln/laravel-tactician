@@ -52,16 +52,34 @@ class Bus implements CommandBusInterface
      */
     public function dispatch($command, array $middleware = [])
     {
-        if(!$this->handlerLocator->handlers()) {
+        if(!$this->handlerLocator->handlers()
+            || !$this->commandHasABindedCommandHandler($command)) {
             $this->bindCommandWitHisCommandHandler($command);
         }
 
         return $this->handleTheCommand($command, $middleware);
     }
 
+    private function getCommandAndCommandHandlerNames($commandClass): array
+    {
+        return (new GetCommandHandlerNameService())->execute($commandClass);
+    }
+
+    private function commandHasABindedCommandHandler($command): bool
+    {
+        [$commandFullName, $commandHandlerFullName] = $this->getCommandAndCommandHandlerNames($command);
+        $currentCommandAndHisHandlers = $this->handlerLocator->handlers();
+        if(is_array($currentCommandAndHisHandlers)
+            && !empty($currentCommandAndHisHandlers[$commandFullName])) {
+            return true;
+        }
+
+        return false;
+    }
+
     private function bindCommandWitHisCommandHandler($commandClass)
     {
-        [$commandFullName, $commandHandlerFullName] = (new GetCommandHandlerNameService())->execute($commandClass);
+        [$commandFullName, $commandHandlerFullName] = $this->getCommandAndCommandHandlerNames($commandClass);
 
         $this->addHandler($commandFullName, $commandHandlerFullName);
     }
@@ -94,6 +112,7 @@ class Bus implements CommandBusInterface
                 [new CommandHandlerMiddleware($this->commandNameExtractor, $this->handlerLocator, $this->methodNameInflector)]
             )
         );
+
         return $this->bus->handle($command);
     }
 
