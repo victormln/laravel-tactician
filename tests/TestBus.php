@@ -3,6 +3,7 @@
 namespace Victormln\LaravelTactician\Tests;
 
 use Victormln\LaravelTactician\Exceptions\CommandHandlerNotExists;
+use Victormln\LaravelTactician\Tests\Stubs\TestCommandArray;
 use Victormln\LaravelTactician\Tests\Stubs\TestCommandInput;
 use Victormln\LaravelTactician\Tests\TestCase;
 use Victormln\LaravelTactician\Tests\Stubs\TestCommand;
@@ -23,6 +24,22 @@ class TestBus extends TestCase
         $this->assertInstanceOf(
             TestCommand::class,
             $bus->dispatch(new TestCommand())
+        );
+    }
+
+    /**
+     * Test if the class can handle two command
+     */
+    public function test_it_handles_two_command(): void
+    {
+        $bus = app('Victormln\LaravelTactician\CommandBusInterface');
+        $this->assertInstanceOf(
+            TestCommand::class,
+            $bus->dispatch(new TestCommand())
+        );
+        $this->assertArrayHasKey(
+            'defaultPropertyOne',
+            $bus->dispatch(new TestCommandArray())
         );
     }
 
