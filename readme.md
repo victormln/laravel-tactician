@@ -156,7 +156,6 @@ If you discover any security related issues, please email jose at ditecnologia d
 
 ## Credits
 
-- [Víctor Molina](https://github.com/victormln)
 - Based on [Jose Luis Fonseca - LaravelTactician](https://github.com/joselfonseca/laravel-tactician)
 - [All Contributors](../../contributors)
 
