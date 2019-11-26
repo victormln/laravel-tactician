@@ -14,9 +14,6 @@ use Victormln\LaravelTactician\Tests\Stubs\TestCommand;
 class TestBus extends TestCase
 {
 
-    /**
-     * Test if the class can handle a command
-     */
     public function test_it_handles_a_command(): void
     {
         $bus = app('Victormln\LaravelTactician\CommandBusInterface');
@@ -26,9 +23,6 @@ class TestBus extends TestCase
         );
     }
 
-    /**
-     * Test if the class can handle two command
-     */
     public function test_it_handles_two_command(): void
     {
         $bus = app('Victormln\LaravelTactician\CommandBusInterface');
@@ -51,9 +45,6 @@ class TestBus extends TestCase
         );
     }
 
-    /**
-     * Test if a a middleware can be applied to the stack
-     */
     public function test_it_applies_a_middleware(): void
     {
         $bus = app('Victormln\LaravelTactician\CommandBusInterface');
@@ -64,9 +55,6 @@ class TestBus extends TestCase
         $this->assertTrue($commandHandled->addedPropertyInMiddleware);
     }
 
-    /**
-     * Test the CommandHandlerNotExists
-     */
     public function test_it_throws_exception_if_input_can_not_be_mapped_to_the_command(): void
     {
         $this->expectException(CommandHandlerNotExists::class);
@@ -74,9 +62,6 @@ class TestBus extends TestCase
         $commandHandler = $bus->dispatch(new TestCommandInput('HELLO'));
     }
 
-    /**
-     * Test if can add a handler manually and can be handled
-     */
     public function test_it_handles_a_command_adding_manually_the_handler(): void
     {
         $bus = app('Victormln\LaravelTactician\CommandBusInterface');

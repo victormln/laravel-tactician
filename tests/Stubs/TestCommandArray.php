@@ -2,7 +2,6 @@
 
 namespace Victormln\LaravelTactician\Tests\Stubs;
 
-
 class TestCommandArray {
 
     private $data;

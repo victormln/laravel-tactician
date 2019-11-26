@@ -2,7 +2,6 @@
 
 namespace Victormln\LaravelTactician\Exceptions;
 
-
 use Exception;
 use Throwable;
 
