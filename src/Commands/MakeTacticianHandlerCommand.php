@@ -31,7 +31,7 @@ class MakeTacticianHandlerCommand extends GeneratorCommand
      */
     protected function getStub()
     {
-        return __DIR__.'/../../stubs/commandHandler.stub';
+        return __DIR__.'/../../stubs/handler.stub';
     }
 
     /**
