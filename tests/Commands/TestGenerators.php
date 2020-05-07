@@ -106,9 +106,9 @@ class TestGenerators extends TestCase
 
         // Test command handler
         $this->assertTrue(file_exists($this->getExpectedHandlerFile()));
-        $this->assertTrue(strpos(file_get_contents($this->getExpectedHandlerFile()), 'Class FooHandler') !== false);
-        $this->assertTrue(strpos(file_get_contents($this->getExpectedHandlerFile()), 'class FooHandler') !== false);
-        $this->assertTrue(strpos(file_get_contents($this->getExpectedHandlerFile()), 'FooHandler constructor') !== false);
+        $this->assertTrue(strpos(file_get_contents($this->getExpectedHandlerFile()), 'Class FooCommandHandler') !== false);
+        $this->assertTrue(strpos(file_get_contents($this->getExpectedHandlerFile()), 'class FooCommandHandler') !== false);
+        $this->assertTrue(strpos(file_get_contents($this->getExpectedHandlerFile()), 'FooCommandHandler constructor') !== false);
         $this->assertTrue(strpos(file_get_contents($this->getExpectedHandlerFile()), 'namespace App\CommandBus\Handlers;') !== false);
     }
 
@@ -151,9 +151,9 @@ class TestGenerators extends TestCase
     {
         $this->makeHandler();
 
-        $this->assertTrue(strpos(file_get_contents($this->getExpectedHandlerFile()), 'Class FooHandler') !== false);
-        $this->assertTrue(strpos(file_get_contents($this->getExpectedHandlerFile()), 'class FooHandler') !== false);
-        $this->assertTrue(strpos(file_get_contents($this->getExpectedHandlerFile()), 'FooHandler constructor') !== false);
+        $this->assertTrue(strpos(file_get_contents($this->getExpectedHandlerFile()), 'Class FooCommandHandler') !== false);
+        $this->assertTrue(strpos(file_get_contents($this->getExpectedHandlerFile()), 'class FooCommandHandler') !== false);
+        $this->assertTrue(strpos(file_get_contents($this->getExpectedHandlerFile()), 'FooCommandHandler constructor') !== false);
     }
 
     /**
@@ -172,8 +172,7 @@ class TestGenerators extends TestCase
     public function test_it_adds_handler_to_command(): void
     {
         $this->makeHandler();
-
-        $this->assertTrue(strpos(file_get_contents($this->getExpectedHandlerFile()), '* @param FooCommand $command') !== false);
+        
         $this->assertTrue(strpos(file_get_contents($this->getExpectedHandlerFile()), 'public function handle(FooCommand $command)') !== false);
     }
 }

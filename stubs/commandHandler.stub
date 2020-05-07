@@ -11,7 +11,9 @@ use App\CommandBus\Commands\DummyClassCommand;
 class DummyClassCommandHandler
 {
 
-}
+    /**
+     * DummyClassCommandHandler constructor.
+     */
     public function __construct()
     {
     }
