@@ -3,7 +3,7 @@ Laravel Tactician
 
 Laravel Tactician in an implementation of the Command Bus Tactician by Ross Tuck and based on: joselfonseca/laravel-tactician
 
-[![Build Status](https://travis-ci.org/victormln/laravel-tactician.svg)](https://travis-ci.org/victormln/laravel-tactician)
+[![Build Status](https://api.travis-ci.org/victormln/laravel-tactician.svg?branch=master)](https://travis-ci.org/victormln/laravel-tactician)
 [![Latest Stable Version](https://poser.pugx.org/victormln/laravel-tactician/v/stable)](https://packagist.org/packages/victormln/laravel-tactician)
 [![Code Coverage](https://scrutinizer-ci.com/g/victormln/laravel-tactician/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/victormln/laravel-tactician/?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/victormln/laravel-tactician/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/victormln/laravel-tactician/?branch=master)
@@ -115,7 +115,7 @@ artisan make:tactician:command Foo
 artisan make:tactician:handler Foo
 ```
 
-This will create FooCommand and FooHandler and place them in the app/CommandBus/Commands and app/CommandBus/Handlers respectively
+This will create FooCommand and FooCommandHandler and place them in the app/CommandBus/Commands and app/CommandBus/Handlers respectively
 
 To run both at once
 
