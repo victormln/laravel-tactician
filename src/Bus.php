@@ -53,9 +53,8 @@ class Bus implements CommandBusInterface
     public function dispatch(object $command, array $middleware = [])
     {
         $fullCommandName = $this->getFullCommandNameOrFail($command);
-        $fullCommandHandlerName = $this->getCommandHandlerName($fullCommandName);
         if(!$this->handlerLocator->handlers() || !$this->commandHasABoundedCommandHandler($command)) {
-            $this->bindCommandWitHisCommandHandler($fullCommandName, $fullCommandHandlerName);
+            $this->bindCommandWitHisCommandHandler($fullCommandName, $this->getCommandHandlerName($fullCommandName));
         }
 
         return $this->handleTheCommand($command, $middleware);
