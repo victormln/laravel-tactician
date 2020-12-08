@@ -2,15 +2,15 @@
 
 namespace Victormln\LaravelTactician;
 
+use RuntimeException;
 use League\Tactician\CommandBus;
 use League\Tactician\Plugins\LockingMiddleware;
 use League\Tactician\Handler\CommandHandlerMiddleware;
-use Victormln\LaravelTactician\Exceptions\CommandHandlerNotExists;
+use League\Tactician\Exception\MissingHandlerException;
 use Victormln\LaravelTactician\Locator\LocatorInterface;
+use Victormln\LaravelTactician\Services\GetCommandHandlerNameService;
 use League\Tactician\Handler\MethodNameInflector\MethodNameInflector;
 use League\Tactician\Handler\CommandNameExtractor\CommandNameExtractor;
-use Victormln\LaravelTactician\Services\GetCommandHandlerNameService;
-use Victormln\LaravelTactician\Services\GetCommandHandlerService;
 
 /**
  * The default Command bus Using Tactician, this is an implementation to dispatch commands to their handlers trough a middleware stack, every class is resolved from the laravel's service container.
@@ -47,63 +47,63 @@ class Bus implements CommandBusInterface
      *
      * @param  object $command    Command to be dispatched
      * @param  array  $middleware Array of middleware class name to add to the stack, they are resolved from the laravel container
-     * @throws CommandHandlerNotExists
+     * @throws MissingHandlerException|RuntimeException
      * @return mixed
      */
-    public function dispatch($command, array $middleware = [])
+    public function dispatch(object $command, array $middleware = [])
     {
-        if(!$this->handlerLocator->handlers()
-            || !$this->commandHasABindedCommandHandler($command)) {
-            $this->bindCommandWitHisCommandHandler($command);
+        $fullCommandName = $this->getFullCommandNameOrFail($command);
+        if(!$this->handlerLocator->handlers() || !$this->commandHasABoundedCommandHandler($command)) {
+            $this->bindCommandWitHisCommandHandler($fullCommandName, $this->getCommandHandlerName($fullCommandName));
         }
 
         return $this->handleTheCommand($command, $middleware);
     }
 
-    private function getCommandAndCommandHandlerNames($commandClass): array
+    /**
+     * @param object $commandClass
+     * @return string
+     * @throws RuntimeException
+     */
+    private function getFullCommandNameOrFail(object $commandClass): string
     {
-        return (new GetCommandHandlerNameService())->execute($commandClass);
-    }
-
-    private function commandHasABindedCommandHandler($command): bool
-    {
-        [$commandFullName, $commandHandlerFullName] = $this->getCommandAndCommandHandlerNames($command);
-        $currentCommandAndHisHandlers = $this->handlerLocator->handlers();
-        if(is_array($currentCommandAndHisHandlers)
-            && !empty($currentCommandAndHisHandlers[$commandFullName])) {
-            return true;
+        $fullCommandName = get_class($commandClass);
+        if (!$fullCommandName) {
+            throw new RuntimeException('Invalid Command ' . $commandClass. ' given');
         }
 
-        return false;
-    }
-
-    private function bindCommandWitHisCommandHandler($commandClass)
-    {
-        [$commandFullName, $commandHandlerFullName] = $this->getCommandAndCommandHandlerNames($commandClass);
-
-        $this->addHandler($commandFullName, $commandHandlerFullName);
+        return $fullCommandName;
     }
 
     /**
-     * Add the Command Handler
-     *
-     * @param  string $command Class name of the command
-     * @param  string $handler Class name of the handler to be resolved from the Laravel Container
-     * @return mixed
+     * @param string $fullCommandName
+     * @return string
+     * @throws MissingHandlerException
      */
-    public function addHandler($command, $handler)
+    protected function getCommandHandlerName(string $fullCommandName): string
+    {
+        return (new GetCommandHandlerNameService())->execute($fullCommandName);
+    }
+
+    private function commandHasABoundedCommandHandler(string $fullCommandName): bool
+    {
+        $currentCommandAndHisHandlers = $this->handlerLocator->handlers();
+
+        return is_array($currentCommandAndHisHandlers)
+            && !empty($currentCommandAndHisHandlers[$fullCommandName]);
+    }
+
+    private function bindCommandWitHisCommandHandler(string $fullCommandName, string $fullCommandHandlerName): void
+    {
+        $this->addHandler($fullCommandName, $fullCommandHandlerName);
+    }
+
+    public function addHandler(string $command, string $handler): void
     {
         $this->handlerLocator->addHandler($handler, $command);
     }
 
-    /**
-     * Handle the command
-     *
-     * @param  $command
-     * @param  $middleware
-     * @return mixed
-     */
-    protected function handleTheCommand($command, array $middleware)
+    protected function handleTheCommand(object $command, array $middleware)
     {
         $this->bus = new CommandBus(
             array_merge(
@@ -116,13 +116,7 @@ class Bus implements CommandBusInterface
         return $this->bus->handle($command);
     }
 
-    /**
-     * Resolve the middleware stack from the laravel container
-     *
-     * @param  $middleware
-     * @return array
-     */
-    protected function resolveMiddleware(array $middleware)
+    protected function resolveMiddleware(array $middleware): array
     {
         $m = [];
         foreach ($middleware as $class) {
