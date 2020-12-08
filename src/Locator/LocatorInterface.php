@@ -16,7 +16,7 @@ interface LocatorInterface extends HandlerLocator
      * @param string $handler          Handler to receive class name
      * @param string $commandClassName Command class e.g. "My\TaskAddedCommand"
      */
-    public function addHandler($handler, $commandClassName);
+    public function addHandler(string $handler, string $commandClassName);
 
     /**
      * Allows you to add multiple handlers at once.

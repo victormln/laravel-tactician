@@ -16,7 +16,7 @@ interface CommandBusInterface
      * @param  array  $middleware Array of middleware class name to add to the stack, they are resolved from the laravel container they are resolved fro the laravel container
      * @return mixed
      */
-    public function dispatch($command, array $middleware = []);
+    public function dispatch(object $command, array $middleware = []);
 
     /**
      * Add the Command Handler
@@ -25,5 +25,5 @@ interface CommandBusInterface
      * @param  string $handler Class name of the handler to be resolved from the Laravel Container
      * @return mixed
      */
-    public function addHandler($command, $handler);
+    public function addHandler(string $command, string $handler);
 }

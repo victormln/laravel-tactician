@@ -2,7 +2,7 @@
 
 namespace Victormln\LaravelTactician\Tests;
 
-use Victormln\LaravelTactician\Exceptions\CommandHandlerNotExists;
+use League\Tactician\Exception\MissingHandlerException;
 use Victormln\LaravelTactician\Tests\Stubs\TestCommandArray;
 use Victormln\LaravelTactician\Tests\Stubs\TestCommandInput;
 use Victormln\LaravelTactician\Tests\Stubs\TestCommand;
@@ -57,7 +57,7 @@ class TestBus extends TestCase
 
     public function test_it_throws_exception_if_input_can_not_be_mapped_to_the_command(): void
     {
-        $this->expectException(CommandHandlerNotExists::class);
+        $this->expectException(MissingHandlerException::class);
         $bus = app('Victormln\LaravelTactician\CommandBusInterface');
         $commandHandler = $bus->dispatch(new TestCommandInput('HELLO'));
     }

@@ -2,33 +2,38 @@
 
 declare(strict_types=1);
 
-
 namespace Victormln\LaravelTactician\Services;
 
-
-use Victormln\LaravelTactician\Exceptions\CommandHandlerNotExists;
+use League\Tactician\Exception\MissingHandlerException;
 
 final class GetCommandHandlerNameService
 {
+    private const HANDLER_SUFFIX = 'Handler';
 
-    public function execute($commandClass): array
+    /**
+     * @param string $fullCommandName
+     * @return string
+     * @throws MissingHandlerException
+     */
+    public function execute(string $fullCommandName): string
     {
-        $commandFullName = $this->getNameOfClass($commandClass);
-        $commandHandlerFullName = $commandFullName . 'Handler';
-        if (!class_exists($commandHandlerFullName)) {
-            throw CommandHandlerNotExists::with($commandHandlerFullName);
-        }
+        $commandHandlerName = $fullCommandName . self::HANDLER_SUFFIX;
+        $this->validateIfCommandHandlerExistsOrFail($commandHandlerName);
 
-        return [
-            $commandFullName,
-            $commandHandlerFullName
-        ];
+        return $commandHandlerName;
     }
 
-    private function getNameOfClass($commandClass): string
+    /**
+     * @param string $fullCommandHandlerName
+     * @return bool
+     * @throws MissingHandlerException
+     */
+    private function validateIfCommandHandlerExistsOrFail(string $fullCommandHandlerName): bool
     {
-        $reflectionCommand = new \ReflectionObject($commandClass);
+        if (!class_exists($fullCommandHandlerName)) {
+            throw MissingHandlerException::forCommand($fullCommandHandlerName);
+        }
 
-        return $reflectionCommand->getNamespaceName() . '\\' . $reflectionCommand->getShortName();
+        return true;
     }
 }
